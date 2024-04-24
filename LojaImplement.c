@@ -1,23 +1,23 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include"Cabecalho.h"
 
-
-typedef struct
+struct prod
 {
     char Nproduto[10];
     float price;
-}produtos;
+};
 
 char useradmin[10]= "admin";
 int senhadmin=123;
 
 
-typedef struct{
+struct cad{
     char usuario[50];
     char email[80];
     int senha;
-}cadastro;
+};
 
 
 
@@ -58,20 +58,23 @@ void menucompra(){
     printf("3 - Carregador R$150\n");
     printf("4 - Cabo USB R$80\n");
     printf("5 - Capa de proteção 15\n");
-
-    int fim;
-    int n;
-    float quant, k, soma=0;
-    while(fim!=0){
+    fflush(stdin);
+    fflush(stdout);
+    int fim=0;
+    int quant, n;
+    float k, soma=0;
+    do{
         printf("Digite o numero do produto: ");
         scanf("%i", &n);
+        fflush(stdin);
         printf("Digite a quantidade: ");
         scanf("%f", &quant);
+        fflush(stdin);
         k=x[n-1]*quant;
         soma=soma+k;
-        printf("Digite 0 para sair ou qualquer outro numero para continuar: ");
+        printf("Digite um numero diferente de 0 para sair:");
         scanf("%i", &fim);
-    }
+    }while(fim=0);
     printf("Total a pagar: R$%.2f\n", soma);
     printf("Volte sempre :)\n");
     FILE *file=fopen("vendas.txt", "a");
@@ -189,8 +192,10 @@ int login(){
     int senha;
     printf("Informe o nome de usuario: ");
     scanf("%s", nome);
+    fflush(stdin);
     printf("Informe a sua senha: ");
     scanf("%i", &senha);
+    fflush(stdin);
     for(int i=0; i<n; i++){
         if(strcmp(v[i].usuario, nome)==0){
             entrou=1;
@@ -206,7 +211,7 @@ int login(){
 
 
 
-int main (){
+void mainLoja(){
     
     printf("******Boas vindas a Lojinha******\n");
     int op;
@@ -259,5 +264,4 @@ int main (){
     
     }while(op!=0);
 
-    return 0;
 }
